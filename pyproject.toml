@@ -1,0 +1,6 @@
+[project]
+name = "financial-agent"
+version = "0.1.0"
+dependencies = [
+    "google-adk",
+]
