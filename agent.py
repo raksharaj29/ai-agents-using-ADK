@@ -2,38 +2,31 @@ from google.adk.agents import Agent
 
 from .financial_agent.agent import financial_agent
 from .expense_agent.agent import expense_agent
+from .budget_agent.agent import budget_agent
 
 
 root_agent = Agent(
     name="ai_agent_pro",
     model="gemini-2.5-flash",
-    description="Main financial assistant with financial and expense agents.",
+
+    description="A financial assistant with multiple specialized agents.",
+
     instruction="""
-    You are the main assistant.
+    You are the main financial assistant.
 
-    You have two specialist agents:
+    Route the user's request to the appropriate specialized agent.
 
-    1. Financial Agent
-    - Savings calculation
-    - SIP calculation
-    - Income related calculations
+    Use:
+    - Financial Agent for savings and SIP calculations
+    - Expense Agent for expense-related requests
+    - Budget Agent for budgeting and budget planning
 
-    2. Expense Agent
-    - Expense tracking
-    - Adding expenses
-    - Total expense calculation
-
-    Ask the user which agent they want to use:
-
-    1. Financial Agent
-    2. Expense Agent
-
-    If the user chooses Financial Agent, transfer the task to Financial Agent.
-
-    If the user chooses Expense Agent, transfer the task to Expense Agent.
+    Choose the appropriate agent based on the user's request.
     """,
+
     sub_agents=[
         financial_agent,
-        expense_agent
+        expense_agent,
+        budget_agent
     ],
 )
